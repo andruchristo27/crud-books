@@ -182,7 +182,7 @@
                         }
                     },
                     error: function (data) {
-                        if (data.status === 422) { // Error validasi dari Laravel
+                        if (data.status === 422) {
                             var errors = data.responseJSON.errors;
                             var errorMessage = '';
                             $.each(errors, function (key, value) {
@@ -219,15 +219,12 @@
             url: "{{ url('books/show') }}/" + bookId,
             success: function (data) {
                 if (data.success) {
-                    // Set data ke modal
                     $('#book-title').text(data.data.title);
                     $('#book-author').text(data.data.author);
                     $('#book-year').text(data.data.year);
                     $('#book-status').text(data.data.status);
                     $('#book-description').text(data.data.description);
                     $('#book-cover').attr('src', '/covers/' + data.data.cover);
-
-                    // Tampilkan modal
                     $('#bookDetailModal').modal('show');
                 } else {
                     alert('Book not found.');
